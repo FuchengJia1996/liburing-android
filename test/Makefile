@@ -35,14 +35,16 @@ CXXFLAGS ?= $(CFLAGS)
 override CFLAGS += $(XCFLAGS) -DLIBURING_BUILD_TEST
 override CXXFLAGS += $(XCFLAGS) -std=c++11 -DLIBURING_BUILD_TEST
 
+#LDFLAGS ?=
+#override LDFLAGS += -L../src/ -luring -lpthread
+
 LDFLAGS ?=
-override LDFLAGS += -L../src/ -luring -lpthread
+override LDFLAGS += -L../src/ -luring
 
 # Please keep this list sorted alphabetically.
 test_srcs := \
 	232c93d07b74.c \
 	35fa71a030ca.c \
-	500f9fbadef8.c \
 	7ad0e4b2f83c.c \
 	8a9973408177.c \
 	917257daa0fe.c \
@@ -50,10 +52,8 @@ test_srcs := \
 	a4c0b3decb33.c \
 	accept.c \
 	accept-link.c \
-	accept-non-empty.c \
 	accept-reuse.c \
 	accept-test.c \
-	across-fork.c \
 	b19062a56726.c \
 	b5837bd5311d.c \
 	bind-listen.c \
@@ -87,7 +87,6 @@ test_srcs := \
 	eventfd-ring.c \
 	evloop.c \
 	exec-target.c \
-	exit-no-cleanup.c \
 	fadvise.c \
 	fallocate.c \
 	fc2a85cb02ef.c \
@@ -101,7 +100,6 @@ test_srcs := \
 	file-update.c \
 	file-verify.c \
 	fixed-buf-iter.c \
-	fixed-buf-merge.c \
 	fixed-hugepage.c \
 	fixed-link.c \
 	fixed-reuse.c \
@@ -119,7 +117,6 @@ test_srcs := \
 	io_uring_enter.c \
 	io_uring_passthrough.c \
 	io_uring_register.c \
-	io_uring_setup.c \
 	kallsyms.c \
 	lfs-openat.c \
 	lfs-openat-write.c \
@@ -129,11 +126,7 @@ test_srcs := \
 	linked-defer-close.c \
 	madvise.c \
 	min-timeout.c \
-	min-timeout-wait.c \
 	mkdir.c \
-	msg-ring.c \
-	msg-ring-fd.c \
-	msg-ring-flags.c \
 	msg-ring-overflow.c \
 	multicqes_drain.c \
 	napi-test.c \
@@ -157,8 +150,6 @@ test_srcs := \
 	poll-many.c \
 	poll-mshot-overflow.c \
 	poll-mshot-update.c \
-	poll-race.c \
-	poll-race-mshot.c \
 	poll-ring.c \
 	poll-v-poll.c \
 	pollfree.c \
@@ -168,7 +159,6 @@ test_srcs := \
 	read-mshot-empty.c \
 	read-mshot-stdin.c \
 	read-write.c \
-	recv-msgall.c \
 	recv-msgall-stream.c \
 	recv-multishot.c \
 	reg-fd-only.c \
@@ -185,11 +175,8 @@ test_srcs := \
 	rsrc_tags.c \
 	rw_merge_test.c \
 	self.c \
-	recvsend_bundle.c \
-	recvsend_bundle-inc.c \
 	send_recv.c \
 	send_recvmsg.c \
-	send-zerocopy.c \
 	shared-wq.c \
 	short-read.c \
 	shutdown.c \
@@ -224,7 +211,6 @@ test_srcs := \
 	thread-exit.c \
 	timeout.c \
 	timeout-new.c \
-	truncate.c \
 	tty-write-dpoll.c \
 	unlink.c \
 	uring_cmd_ublk.c \

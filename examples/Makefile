@@ -10,8 +10,11 @@ ifneq ($(MAKECMDGOALS),clean)
 include ../config-host.mak
 endif
 
+#LDFLAGS ?=
+#override LDFLAGS += -L../src/ -luring -lpthread
+
 LDFLAGS ?=
-override LDFLAGS += -L../src/ -luring -lpthread
+override LDFLAGS += -L../src/ -luring
 
 ifeq ($(CONFIG_USE_SANITIZER),y)
 	override CFLAGS += -fsanitize=address,undefined -fno-omit-frame-pointer -fno-optimize-sibling-calls
@@ -28,9 +31,7 @@ example_srcs := \
 	napi-busy-poll-client.c \
 	napi-busy-poll-server.c \
 	poll-bench.c \
-	send-zerocopy.c \
 	rsrc-update-bench.c \
-	proxy.c \
 	kdigest.c
 
 all_targets :=
